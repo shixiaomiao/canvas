@@ -1,0 +1,7 @@
+1.canvas是H5中的新元素，其默认的尺寸为300 * 150
+2.不建议使用css方式设置canvas画布的尺寸，建议使用width和height设置宽高，因为用width和height设置既可以设置画布的大小，还可以设置图形的精度。
+3.注意width和height都是不带单位的，原因同2
+
+4.canvas画图是基于状态的，先设置状态，在进行绘制。
+
+5.draw a line ：
