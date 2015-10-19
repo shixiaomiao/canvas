@@ -1,0 +1,89 @@
+<!Doctype>
+<html>
+<head>
+<title>canvas画线——七巧板</title>
+</head>
+<body>
+<canvas id = "canvas" >您的浏览器不支持canvas标签，请升级浏览器或更换浏览器。。。</canvas>
+<script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+canvas.width = 400;
+canvas.height = 400;
+
+//green的三角形
+ctx.beginPath();
+ctx.fillStyle = "green";
+ctx.moveTo(0,0);
+ctx.lineTo(400,0);
+ctx.lineTo(200,200);
+ctx.fill();
+ctx.closePath();
+
+//blue的三角形
+ctx.beginPath();
+ctx.fillStyle = "blue";
+ctx.moveTo(0,0);
+ctx.lineTo(0,400);
+ctx.lineTo(200,200);
+ctx.fill();
+ctx.closePath();
+
+//pink的三角形
+ctx.beginPath();
+ctx.fillStyle = "pink";
+ctx.moveTo(100,300);
+ctx.lineTo(0,400);
+ctx.lineTo(200,400);
+ctx.fill();
+ctx.closePath();
+
+//blue的三角形
+ctx.beginPath();
+ctx.fillStyle = "blue";
+ctx.moveTo(0,0);
+ctx.lineTo(0,400);
+ctx.lineTo(200,200);
+ctx.fill();
+ctx.closePath();
+
+//red的四边形
+ctx.beginPath();
+ctx.fillStyle = "red";
+ctx.moveTo(400,0);
+ctx.lineTo(300,100);
+ctx.lineTo(300,300);
+ctx.lineTo(400,200);
+ctx.fill();
+ctx.closePath();
+
+//yellow的三角形
+ctx.beginPath();
+ctx.fillStyle = "yellow";
+ctx.moveTo(300,100);
+ctx.lineTo(200,200);
+ctx.lineTo(300,300);
+ctx.fill();
+ctx.closePath();
+
+//orange的三角形
+ctx.beginPath();
+ctx.fillStyle = "orange";
+ctx.moveTo(400,200);
+ctx.lineTo(200,400);
+ctx.lineTo(400,400);
+ctx.fill();
+ctx.closePath();
+
+//purple的四边形
+ctx.beginPath();
+ctx.fillStyle = "purple";
+ctx.moveTo(200,200);
+ctx.lineTo(300,300);
+ctx.lineTo(200,400);
+ctx.lineTo(100,300);
+ctx.fill();
+ctx.closePath();
+</script>
+</body>
+</html>
