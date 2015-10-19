@@ -1,7 +1,24 @@
-1.canvas��H5�е���Ԫ�أ���Ĭ�ϵĳߴ�Ϊ300 * 150
-2.������ʹ��css��ʽ����canvas�����ĳߴ磬����ʹ��width��height���ÿ��ߣ���Ϊ��width��height���üȿ������û����Ĵ�С������������ͼ�εľ��ȡ�
-3.ע��width��height���ǲ�����λ�ģ�ԭ��ͬ2
+1.canvas是H5中的新元素，其默认的尺寸为300 * 150
+2.不建议使用css方式设置canvas画布的尺寸，建议使用width和height设置宽高，因为用width和height设置既可以设置画布的大小，还可以设置图形的精度。
+3.注意width和height都是不带单位的，原因同2
 
-4.canvas��ͼ�ǻ���״̬�ģ�������״̬���ڽ��л��ơ�
+4.canvas画图是基于状态的，先设置状态，在进行绘制。
 
-5.draw a line ��
+5.draw a line 步骤：
+a. 获取元素 
+var canvas = document.getElementById("canvas");
+b. 获取上下文绘图环境
+var ct = canvas.getContext("2d");
+c.设置画笔的状态
+ct.lineWidth = "画笔粗细";
+ct.strokeStyle = "颜色";
+ct.moveTo(x1,y1);  //绘制起始点
+ct.lineTo(x2,y2);  //线条的落笔点
+
+d.画线
+ct.stroke();
+
+还可以使用fill(填充)绘制实心的图形。
+对应的有fillStyle
+
+6.为了绘制中，各个图形之间不相互冲突，建议使用封闭路径画法，beginPath和closePath。
