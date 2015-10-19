@@ -1,0 +1,43 @@
+﻿<!Doctype>
+<html>
+<head>
+<title>canvas画线——七巧板</title>
+</head>
+<body>
+<canvas id = "canvas" >您的浏览器不支持canvas标签，请升级浏览器或更换浏览器。。。</canvas>
+<script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+canvas.width = 400;
+canvas.height = 400;
+//构成七巧板的元素组合
+var trangram = [
+{p:[{x:0,y:0},{x:400,y:0},{x:200,y:200}],color:"green"},
+{p:[{x:0,y:0},{x:0,y:400},{x:200,y:200}],color:"blue"},
+{p:[{x:0,y:400},{x:100,y:300},{x:200,y:400}],color:"pink"},
+{p:[{x:100,y:300},{x:200,y:200},{x:300,y:300},{x:200,y:400}],color:"purple"},
+{p:[{x:300,y:100},{x:300,y:300},{x:200,y:200}],color:"yellow"},
+{p:[{x:300,y:100},{x:400,y:0},{x:400,y:200},{x:300,y:300}],color:"red"},
+{p:[{x:200,y:400},{x:400,y:200},{x:400,y:400}],color:"orange"}
+]
+for( var i = 0 ; i < trangram.length ; i++ )
+{
+	draw(trangram[i],ctx);
+}
+
+function draw( piece, context)
+{
+	context.beginPath();
+	context.fillStyle = piece.color;
+	path = piece.p;	
+	context.moveTo(path[0].x,path[0].y);
+	for( var i = 1; i < path.length; i++ )
+	{
+		context.lineTo(path[i].x,path[i].y);
+	}
+	context.fill();
+	context.closePath();
+}
+</script>
+</body>
+</html>
