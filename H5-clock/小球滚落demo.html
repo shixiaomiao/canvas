@@ -1,0 +1,129 @@
+﻿<!Doctype>
+<html>
+<head>
+<title>canvas画线——七巧板</title>
+<style>
+body{
+	background: #000;
+}
+.nav {
+	margin:10px;
+	width:100px;
+	float:left;
+}
+.nav li{
+	list-style-type:none;
+	margin-top:64px;
+	cursor : pointer;
+	background-color: #9A9898; 
+	width:70px;
+	text-align:center;
+	padding:8px;
+	color:rgb(25, 16, 18);
+}
+#canvas {
+	margin-left: 100px;
+	border:3px solid #004542;
+	display:block;
+}
+li.active {
+	background-color:rgb(249, 237, 237);
+	border: 5px solid #565454;
+	margin-left:-5px;
+}
+</style>
+</head>
+<body>
+<ul class = "nav" id = "nav">
+<li id = "track" class = "active" >查看轨迹</li>
+<li id = "effect">动画效果</li>
+</ul>
+
+<canvas id = "canvas">您的浏览器不支持canvas标签，请升级浏览器或更换浏览器。。。</canvas>
+<script>
+var r = 10;
+var d = 2*(r+1);
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var W = 68 * d;
+var H = 15 *d;
+canvas.width = W;
+canvas.height = H;
+ctx.fillStyle = "#003388";
+var loss = 7;
+var flag = false;
+var ball = { x: 58*d, y: d , vx: -2 , vy : 0 , g:2 , color : "rgb(100,220,170)"};
+
+function update()
+{
+	ball.vy += ball.g;	
+	if ( ball.y + 2*r > H )
+	{
+		ball.vy = ball.vy > 0 ? ball.vy - loss : ball.vy + loss;
+		ball.vy = -ball.vy ;
+	}
+	if ( ball.y < 0 )
+	{
+		ball.vy = ball.vy > 0 ? ball.vy - loss : ball.vy + loss;
+		ball.vy = -ball.vy ;
+	}
+	ball.x += ball.vx ;
+	ball.y += ball.vy;	
+}
+
+ball.timer = setInterval(function(){
+	update();
+	draw();	
+},50)
+
+function draw()
+{
+	if( flag )
+	{
+		ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
+	}
+	
+	ctx.beginPath();
+	ctx.arc(ball.x + r, ball.y + r , r, 0 , 2*Math.PI, false );
+	ctx.fillStyle = ball.color;
+	ctx.fill();
+	ctx.closePath();
+}
+
+//切换状态
+var ul = document.getElementById("nav");
+var aLi = ul.getElementsByTagName("li");
+for(var i = 0 ; i < aLi.length ; i++ )
+{
+	aLi[i].onclick = function(){
+		if( this.className != "active")
+		{
+			for(var j = 0 ; j < aLi.length ; j++ )
+			{
+				aLi[j].className = "";
+			}
+			this.className = "active";
+			if( this.id == "effect" )
+			{
+				flag = true;
+			}
+			else
+			{
+				flag = false;
+			}
+			clearInterval(ball.timer);
+			ball.vy = 0;
+			ball.vx = -2;
+			ball.x = 58*d;
+			ball.y = d;
+			ball.timer = setInterval(function(){
+				draw();	
+				update();
+			},50)
+			
+		}	
+	}
+}
+</script>
+</body>
+</html>
