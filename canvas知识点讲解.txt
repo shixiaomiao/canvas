@@ -22,3 +22,6 @@ ct.stroke();
 对应的有fillStyle
 
 6.为了绘制中，各个图形之间不相互冲突，建议使用封闭路径画法，beginPath和closePath。
+
+7.通过上下文绘图环境ct,还可以获得ct.canvas
+从而获得ct.canvas.width 和ct.canvas.height
